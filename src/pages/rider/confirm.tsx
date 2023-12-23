@@ -7,6 +7,7 @@ import {getDistance, humanizeRide} from "@/components/map/location-utils";
 import {api} from "@/utils/api";
 import {type Driver} from "@/components/user/user.types";
 import {addDriverPrices, getAuthenticatedUser} from "@/components/user/user-utils";
+import BackButton from "@/components/common/back-button";
 
 
 export default function RiderConfirmPage() {
@@ -27,7 +28,6 @@ export default function RiderConfirmPage() {
   const handleOnSubmit = (driver: Driver) => {
     const rider = getAuthenticatedUser()
     const driverId = driver.id ?? ''
-    console.log(route, distance, duration)
     startRideDrivers.mutate({
       price: driver.price,
       dynamicMultiplier,
@@ -48,7 +48,6 @@ export default function RiderConfirmPage() {
     } else {
       void getDistance(pickup, dropoff).then(({routes, ...x}) => {
         setRoute(routes[0])
-        console.log('setRoute', routes, x)
       })
     }
 
@@ -56,6 +55,7 @@ export default function RiderConfirmPage() {
   return (
     <DefaultPage title="Confirm ride">
       <Map pickupCoords={pickup} dropoffCoords={dropoff}/>
+      <BackButton href="/rider/search" float />
       <RiderConfirmSection onSubmit={handleOnSubmit}
                            distance={distance}
                            duration={duration}
