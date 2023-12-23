@@ -13,7 +13,9 @@ export async function getDistance(pickupCoords: string | string[], dropoffCoords
     .then(r => r.json())
 }
 
-interface HumanizedRide {
+export const isValidCoords = (coords: [number, number] | string) => coords && coords.toString() !== '0,0'
+
+export interface HumanizedRide {
   distance: number
   duration: number
   pickup?: string

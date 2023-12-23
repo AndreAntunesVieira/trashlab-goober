@@ -38,7 +38,7 @@ const LocationForm = ({ name, placeholder, tabIndex, onChange}: LocationFormProp
   const debouncedOnChange = debounce(handleOnChange, 1500)
   return (
     <div>
-      <input id={name} name={name} list={`${name}-datalist`} className="p-2 w-full bg-[#DDDDDD]" placeholder={placeholder} tabIndex={tabIndex}
+      <input id={name} name={name} list={`${name}-datalist`} className="p-2 w-full bg-blue-100" placeholder={placeholder} tabIndex={tabIndex}
              onChange={debouncedOnChange}/>
 
       <datalist id={`${name}-datalist`}>

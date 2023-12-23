@@ -4,7 +4,7 @@ import DefaultPage from "@/layouts/default-page";
 import {api} from "@/utils/api";
 import {useRouter} from "next/router";
 import {useEffect} from "react";
-import {humanizeRide} from "@/components/map/location-utils";
+import {type HumanizedRide, humanizeRide} from "@/components/map/location-utils";
 import BackButton from "@/components/common/back-button";
 
 export default function Home() {
@@ -12,8 +12,7 @@ export default function Home() {
   const rideId = String(router.query.rideId)
   const currentRide = api.rider.currentRide.useQuery({id: rideId, driver: false}, { enabled: false });
   const cancelRide = api.rider.cancelRide.useMutation()
-  // @ts-ignore
-  const ride = humanizeRide(currentRide.data)
+  const ride = humanizeRide(currentRide.data as HumanizedRide)
 
   const handleOnCancel = async () => {
     cancelRide.mutate({id: rideId, status: 'canceled'})

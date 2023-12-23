@@ -11,14 +11,14 @@ export default function RiderDashboardSection(){
     setUser(getAuthenticatedUser())
   }, [])
   return (
-    <div className="flex flex-col gap-4 min-w-max bg-gradient-to-b from-[#FFFFFF] to-[#DDDDDD] p-4 w-full">
+    <div className="flex flex-col gap-4 min-w-max bg-white bg- p-4 w-full">
       <div className="flex justify-between">
         <Logo/>
         <UserFull {...user} href="/" />
       </div>
       <div>
         <Link href="/rider/search">
-          <div className="p-2 w-full bg-[#DDD]">
+          <div className="p-2 w-full bg-blue-100">
             Where to?
           </div>
         </Link>

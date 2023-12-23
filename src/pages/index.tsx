@@ -3,12 +3,11 @@ import DefaultPage from "@/layouts/default-page";
 import Logo from "@/components/logo/logo";
 import {type FormEvent, useEffect} from "react";
 import {useRouter} from "next/router";
+import {setAuthenticatedUser} from "@/components/user/user-utils";
+import {User} from "@/components/user/user.types";
+import {serializeForm} from "@/utils/dom";
 
-function serializeForm(formElement: HTMLFormElement) {
-  const formDataObj: any = {};
-  new FormData(formElement).forEach((value, key) => (formDataObj[key] = value));
-   return formDataObj
-}
+
 export default function Home() {
   const router = useRouter()
   const loginRequest = api.user.signIn.useMutation();
@@ -16,15 +15,14 @@ export default function Home() {
   const onSubmit = (event: FormEvent) => {
     event.stopPropagation()
     event.preventDefault()
-    const value= serializeForm(event.target as HTMLFormElement)
+    const value = serializeForm(event.target as HTMLFormElement)
     loginRequest.mutate(value)
   }
 
   useEffect(() => {
-    if(loginRequest.data){
-      const {user, sessionToken} = loginRequest.data
-      sessionStorage.setItem('user', JSON.stringify(user))
-      sessionStorage.setItem('sessionToken', sessionToken)
+    if (loginRequest.data) {
+      const user = loginRequest.data
+      setAuthenticatedUser(user as User)
       void router.push(`/${user.roleId}`)
     }
   }, [loginRequest.data])
@@ -52,7 +50,7 @@ export default function Home() {
                     Password
                   </label>
                   <input
-                    className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-black-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-black-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                     id="password" name="password" type="password" placeholder="******************"/>
                 </div>
                 {loginRequest.error && <p className="text-red-500 text-xs italic">Something went

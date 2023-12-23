@@ -4,15 +4,10 @@ import {env} from "@/env";
 import {useEffect} from "react";
 import classNames from "classnames";
 import styles from "./map.module.css";
+import {isValidCoords} from "@/components/map/location-utils";
+import {getNavigatorLocation} from "@/utils/dom";
 
 mapboxgl.accessToken = env.NEXT_PUBLIC_MAPBOXGL_ACCESS_TOKEN;
-
-interface NavigatorPosition {
-  coords: {
-    longitude: number
-    latitude: number
-  }
-}
 
 interface MapComponentProps {
   showUserPointer?: boolean
@@ -20,26 +15,6 @@ interface MapComponentProps {
   dropoffCoords?: [number, number] | string
 }
 
-function getNavigatorPosition() {
-  return new Promise((promiseResolve) => {
-    const options = {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0,
-    };
-
-    function success(pos: NavigatorPosition) {
-      const coords = pos.coords;
-      promiseResolve({lng: coords.longitude, lat: coords.latitude})
-    }
-
-    function error() {
-      promiseResolve({lng: -122.45, lat: 37.70})
-    }
-
-    navigator.geolocation.getCurrentPosition(success, error, options);
-  })
-}
 
 const defineMap = (container: string, lng: number, lat: number, showUserPointer = false) => {
   global.map = {
@@ -57,8 +32,11 @@ const defineMap = (container: string, lng: number, lat: number, showUserPointer 
     global.map.user.element = new mapboxgl.Marker({color: '#00abd1'}).setLngLat([lng, lat]).addTo(global.map.element)
   }
 }
+
+
 export default function MapComponent({showUserPointer = false, pickupCoords, dropoffCoords}: MapComponentProps) {
   const updateCoords = (type: string, center: string | string[], color = '#011178') => {
+    if(!isValidCoords(center)) return undefined
     if (typeof center == 'string') center = center.split(',')
     global.map[type].coords = center
     if (!global.map[type].element) global.map[type].element = new mapboxgl.Marker({color}).setLngLat(global.map[type].coords).addTo(global.map.element)
@@ -70,7 +48,7 @@ export default function MapComponent({showUserPointer = false, pickupCoords, dro
   }
 
   useEffect(() => {
-    void getNavigatorPosition().then((coords) => {
+    void getNavigatorLocation().then((coords) => {
       document.querySelector("#map").innerHTML = ''
       defineMap('map', coords.lng, coords.lat, showUserPointer)
 

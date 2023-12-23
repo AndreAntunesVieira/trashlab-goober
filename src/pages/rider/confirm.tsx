@@ -6,9 +6,8 @@ import {useEffect, useState} from "react";
 import {getDistance, humanizeRide} from "@/components/map/location-utils";
 import {api} from "@/utils/api";
 import {type Driver} from "@/components/user/user.types";
-import {getAuthenticatedUser} from "@/components/user/user-utils";
+import {addDriverPrices, getAuthenticatedUser} from "@/components/user/user-utils";
 
-const DISTANCE_COST = 0.5
 
 export default function RiderConfirmPage() {
   const router = useRouter()
@@ -22,10 +21,7 @@ export default function RiderConfirmPage() {
   const {distance, duration} = humanizeRide(route ?? {distance: 0, duration: 0})
   const availableDriversCount = availableDrivers.data?.length ?? 0
   const dynamicMultiplier = availableDriversCount > 1 ? 1 : 2
-  const drivers: Driver[] = availableDrivers.data?.map(driver => {
-    const carCategoryMultiplier = driver.carCategory?.multiplier ?? 1
-    return {...driver, image: driver.image ?? '', name: driver.name ?? '', price: (carCategoryMultiplier * dynamicMultiplier * distance * DISTANCE_COST)}
-  }) ?? []
+  const drivers: Driver[] = addDriverPrices(dynamicMultiplier, distance, availableDrivers?.data)
 
 
   const handleOnSubmit = (driver: Driver) => {
@@ -43,15 +39,13 @@ export default function RiderConfirmPage() {
       void router.push(`/rider/${startRideDrivers.data.id}`)
     }
   }, [startRideDrivers.data])
+
   useEffect(() => {
     const params = new URLSearchParams(location.search)
     if (!params.has('pickup') || !params.has('dropoff')) {
       void router.push("/rider/search")
     } else {
-      void getDistance(pickup, dropoff)
-        .then(({routes}) => {
-          setRoute(routes[0])
-        })
+      void getDistance(pickup, dropoff).then(({routes}) => setRoute(routes[0]))
     }
 
   }, []);

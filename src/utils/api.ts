@@ -6,7 +6,7 @@
  */
 import { httpBatchLink, loggerLink } from "@trpc/client";
 import { createTRPCNext } from "@trpc/next";
-import { type inferRouterInputs, type inferRouterOutputs } from "@trpc/server";
+import {type inferRouterInputs, type inferRouterOutputs, TRPCError} from "@trpc/server";
 import superjson from "superjson";
 
 import { type AppRouter } from "@/server/api/root";
@@ -52,6 +52,12 @@ export const api = createTRPCNext<AppRouter>({
    */
   ssr: false,
 });
+
+
+export function notFoundError(message: string) {
+  return new TRPCError({code: 'NOT_FOUND', message});
+}
+
 
 /**
  * Inference helper for inputs.

@@ -45,7 +45,7 @@ export default function RiderConfirmSection({ onSubmit, dynamicMultiplier, dista
         <ul className="flex flex-col gap-4">
           {drivers.map((driver) => (
             <li key={driver.id} className={classNames("flex p-2 w-full  gap-2", {
-              'bg-[#DDDDDD]': driverSelected?.id !== driver.id,
+              'bg-blue-100': driverSelected?.id !== driver.id,
               'bg-secondary': driverSelected?.id === driver.id
             })} onClick={() => {
               setDriverSelected(driver)
