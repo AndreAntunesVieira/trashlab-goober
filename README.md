@@ -9,7 +9,6 @@
 Goober is a ride-hailing web application similar to Uber, designed to provide a seamless experience for both drivers and riders. 
 The application is built using React, NextJS, Typescript, and MapboxGL. 
 The backend is developed in NextJs with Prisma ORM and PostgreSQL database. 
-This project was initiated using the command `yarn create t3-app`.
 
 ## User Types
 
@@ -86,9 +85,6 @@ There are two primary user roles in Goober:
 - When a ride request is made, drivers are automatically taken to the ride page.
 - Here, they see ride details (price, dynamic fare status, origin, destination, and rider's info).
 - Two buttons are available: accept and reject. Post-acceptance, the reject button changes to a cancel button.
-![driver1-confirm.png](public%2Fprints%2Fdriver1-confirm.png)
-![driver1-riding.png](public%2Fprints%2Fdriver1-riding.png)
-![driver1-rider-canceled.png](public%2Fprints%2Fdriver1-rider-canceled.png)
 <div style="text-align: center">
     <img width="200" src="https://github.com/andreantunesvieira/trashlab-goober/blob/main/public/prints/driver1-confirm.png?raw=true">
     <img width="200" src="https://github.com/andreantunesvieira/trashlab-goober/blob/main/public/prints/driver1-riding.png?raw=true">
