@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+    --trashlab-primary: #011178;
+    --trashlab-secondary: #00abd1;
+}
+
+body{
+    padding: 0;
+    font-family: 'Typo_Round_Regular.otf,sans-serif';
+}
+
+@font-face {
+    font-family: 'Typo_Round_Bold.otf,sans-serif';
+    font-style: normal;
+    font-weight: 400;
+    src: url(/Typo_Round_Bold.otf);
+}
+
+@font-face {
+    font-family: 'Typo_Round_Regular.otf,sans-serif';
+    font-style: normal;
+    font-weight: 400;
+    src: url(/Typo_Round_Regular.otf);
+}
+
+.bg-primary{
+    background-color: var(--trashlab-primary);
+}
+.bg-secondary{
+    background-color: var(--trashlab-secondary);
+}
+
+.text-primary{
+    color: var(--trashlab-primary);
+}
+.text-secondary{
+    color: var(--trashlab-secondary);
+}
+
