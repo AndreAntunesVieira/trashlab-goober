@@ -53,11 +53,9 @@ export const api = createTRPCNext<AppRouter>({
   ssr: false,
 });
 
-
 export function notFoundError(message: string) {
   return new TRPCError({code: 'NOT_FOUND', message});
 }
-
 
 /**
  * Inference helper for inputs.

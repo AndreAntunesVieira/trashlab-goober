@@ -3,47 +3,8 @@ generator client {
 }
 
 datasource db {
-  // provider = "sqlite" // uncomment this line to work local with sqlite file
   provider = "postgresql"
   url      = env("DATABASE_URL")
-}
-
-model Post {
-  id        Int      @id @default(autoincrement())
-  name      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  createdBy   User   @relation(fields: [createdById], references: [id])
-  createdById String
-
-  @@index([name])
-}
-
-model Account {
-  id                String  @id @default(cuid())
-  userId            String
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String? // @db.Text
-  access_token      String? // @db.Text
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String? // @db.Text
-  session_state     String?
-  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([provider, providerAccountId])
-}
-
-model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       String
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model UserRole {
@@ -65,9 +26,6 @@ model User {
   email         String?      @unique
   emailVerified DateTime?
   image         String?
-  accounts      Account[]
-  sessions      Session[]
-  posts         Post[]
   roleId        String
   role          UserRole     @relation(fields: [roleId], references: [id])
   licensePlate  String?
@@ -90,12 +48,4 @@ model Ride {
   driverId          String
   driver            User     @relation(fields: [driverId], references: [id])
   status            String
-}
-
-model VerificationToken {
-  identifier String
-  token      String   @unique
-  expires    DateTime
-
-  @@unique([identifier, token])
 }
