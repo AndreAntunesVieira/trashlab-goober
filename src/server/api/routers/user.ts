@@ -11,7 +11,7 @@ export const userRouter = createTRPCRouter({
   signIn: publicProcedure
     .input(z.object({email: z.string(), password: z.string()}))
     .mutation(async ({input, ctx}) => {
-      const user = new UserDB(ctx).findByEmail(input.email)
+      const user = await new UserDB(ctx).findByEmail(input.email)
       if (!user) throw notFoundError('user not found.')
       return user
     }),

@@ -30,7 +30,7 @@ export default class RideDB {
     return this.db.findFirst({
       where: {id, status},
       select: {
-        driver: true, distance: true, duration: true, riderId: true, price: true,
+        driver: true, distance: true, duration: true, riderId: true, price: true, id: true,
         dynamicMultiplier: true, status: true, startsAt: true, pickup: true, dropoff: true,
       },
     });
