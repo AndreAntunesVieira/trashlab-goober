@@ -1,5 +1,6 @@
 
 # TrashLab Goober Take-Home Project
+
 ![TrashLb like Goober Logo](https://github.com/andreantunesvieira/trashlab-goober/blob/main/public/Goober-logo.png?raw=true)
 
 
@@ -22,36 +23,54 @@ There are two primary user roles in Goober:
 ### Home and Login
 - On accessing the Goober app, all users are prompted to login.
 - After logging in, riders are redirected to the `/rider` page.
-![rider1-login.png](public%2Fprints%2Frider1-login.png)
+<center>
+    <img width="200" src="https://github.com/andreantunesvieira/trashlab-goober/blob/main/public/prints/rider1-login.png?raw=true">
+    <div>Login using default user "rider1@trashlab.com"</div>
+    <div>(no password needed)</div>
+</center>
 
 ### Rider Page
 - The `/rider` page displays a map centered on the rider's current location.
 - Below the map, there's a section featuring the Goober logo, user's name, profile picture, and a button to select a destination.
-![rider1-dashboard.png](public%2Fprints%2Frider1-dashboard.png)
+<center>
+    <img width="200" src="https://github.com/andreantunesvieira/trashlab-goober/blob/main/public/prints/rider1-dashboard.png?raw=true">
+    <div>Dashboard centered at user browser location</div>
+</center>
 
 ### Destination Selection
 - Clicking the destination button leads to the `/rider/search` page.
 - This page has a back button, Goober logo, two input fields (for start and end locations), and a confirmation button.
 - On selecting locations, the map shows a dark blue marker for the start and a light blue marker for the end location. The map adjusts its zoom to fit both points.
-![rider1-search.png](public%2Fprints%2Frider1-search.png)
+<center>
+    <img width="200" src="https://github.com/andreantunesvieira/trashlab-goober/blob/main/public/prints/rider1-search.png?raw=true">
+    <div>User selecting pickup and drop off location</div>
+</center>
 
 ### Ride Confirmation
 - The `/rider/confirm` page maintains the map view with location markers.
 - It lists available drivers, with fare calculation based on availability and driver type (standard or black, with black drivers having a 1.5x fare multiplier).
 - Riders see expected distance, time, and fares for each driver. They select a driver and confirm the ride.
 - Dynamic price: If there is only one driver available the multiplier is "2" to represents high demand.
-![rider1-select-driver1.png](public%2Fprints%2Frider1-select-driver1.png)
-![rider1-select-driver2.png](public%2Fprints%2Frider1-select-driver2.png)
-![rider2-dynamic.png](public%2Fprints%2Frider2-dynamic.png)
+<center style="margin-bottom: 20px">
+    <img width="200" src="https://github.com/andreantunesvieira/trashlab-goober/blob/main/public/prints/rider1-select-driver1.png?raw=true">
+    <img width="200" src="https://github.com/andreantunesvieira/trashlab-goober/blob/main/public/prints/rider1-select-driver2.png?raw=true">
+    <div>Rider can select between distinct drivers with different prices</div>
+</center>
+<center>
+    <img width="200" src="https://github.com/andreantunesvieira/trashlab-goober/blob/main/public/prints/rider2-dynamic.png?raw=true">
+    <div>If there are few drivers the dynamic price multiplier is by "2"</div>
+</center>
 
 ### Ride Progress
 - The rider is then taken to the ride page, showing a message about the ride status.
 - If the driver accepts, the message updates to show the ride is in progress. If the driver declines or cancels mid-ride, the message changes accordingly.
 - Riders can cancel the ride either after booking or during the ride.
-![rider1-riding-wait.png](public%2Fprints%2Frider1-riding-wait.png)
-![rider1-riding-accepted.png](public%2Fprints%2Frider1-riding-accepted.png)
-![rider1-driver-canceled.png](public%2Fprints%2Frider1-driver-canceled.png)
-- 
+<center>
+    <img width="200" src="https://github.com/andreantunesvieira/trashlab-goober/blob/main/public/prints/rider1-riding-wait.png?raw=true">
+    <img width="200" src="https://github.com/andreantunesvieira/trashlab-goober/blob/main/public/prints/rider1-riding-accepted.png?raw=true">
+    <img width="200" src="https://github.com/andreantunesvieira/trashlab-goober/blob/main/public/prints/rider1-riding-canceled.png?raw=true">
+</center>
+ 
 ## Driver Interface
 
 ### Home and Ride Searching
