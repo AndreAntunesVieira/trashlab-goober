@@ -45,28 +45,9 @@ export const api = createTRPCNext<AppRouter>({
       ],
     };
   },
-  /**
-   * Whether tRPC should await queries when server rendering pages.
-   *
-   * @see https://trpc.io/docs/nextjs#ssr-boolean-default-false
-   */
   ssr: false,
 });
 
 export function notFoundError(message: string) {
   return new TRPCError({code: 'NOT_FOUND', message});
 }
-
-/**
- * Inference helper for inputs.
- *
- * @example type HelloInput = RouterInputs['example']['hello']
- */
-export type RouterInputs = inferRouterInputs<AppRouter>;
-
-/**
- * Inference helper for outputs.
- *
- * @example type HelloOutput = RouterOutputs['example']['hello']
- */
-export type RouterOutputs = inferRouterOutputs<AppRouter>;

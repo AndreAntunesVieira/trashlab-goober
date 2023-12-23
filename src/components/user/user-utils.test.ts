@@ -4,15 +4,11 @@ import {getAuthenticatedUser, setAuthenticatedUser, addDriverPrices, emptyUser} 
 const mockSessionStorage = (function () {
   let store: any = {};
   return {
-    getItem(key: string) {
-      return store[key] || null;
+    getItem: (key: string) => store[key] || null,
+    setItem: (key: string, value: any) => {
+      store[key] = String(value)
     },
-    setItem(key: string, value: any) {
-      store[key] = String(value);
-    },
-    clear() {
-      store = {};
-    }
+    clear: () =>  store = {}
   };
 })();
 

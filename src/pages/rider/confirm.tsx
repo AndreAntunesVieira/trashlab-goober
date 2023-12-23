@@ -46,7 +46,7 @@ export default function RiderConfirmPage() {
     if (!params.has('pickup') || !params.has('dropoff')) {
       void router.push("/rider/search")
     } else {
-      void getDistance(pickup, dropoff).then(({routes, ...x}) => {
+      void getDistance(pickup, dropoff).then(({routes}) => {
         setRoute(routes[0])
       })
     }

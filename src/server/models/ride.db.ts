@@ -1,5 +1,5 @@
-import {type DefaultArgs, PrismaClientOptions} from "@prisma/client/runtime/library";
-import {Prisma, type PrismaClient, Ride} from "@prisma/client";
+import {type DefaultArgs} from "@prisma/client/runtime/library";
+import {Prisma, type PrismaClient} from "@prisma/client";
 import RideDelegate = Prisma.RideDelegate;
 
 export type rideStatus = "requested" | "started" | "canceled"
