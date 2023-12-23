@@ -1,16 +1,20 @@
 import mapboxgl from "mapbox-gl";
 
+const MAPBOX_APIURL = 'https://api.mapbox.com/'
+const fetchMapbox = (path: string, queryParams = {}) => {
+  const searchParams = new URLSearchParams({ access_token: mapboxgl.accessToken, ...queryParams}).toString()
+  return fetch(`${MAPBOX_APIURL}${path}?${searchParams}`)
+    .then(r => r.json())
+}
 
 export async function searchLocation(search: string, limit = 10) {
-  return fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${search}.json?access_token=${mapboxgl.accessToken}&limit=${limit}`)
-    .then(r => r.json())
+  return fetchMapbox(`geocoding/v5/mapbox.places/${search}.json`, {limit})
 }
 
 export async function getDistance(pickupCoords: string | string[], dropoffCoords: string | string[]) {
   const pickupCoordsStr = typeof (pickupCoords) == 'string' ? pickupCoords : pickupCoords.join(',')
   const dropoffCoordsStr = typeof (dropoffCoords) == 'string' ? dropoffCoords : dropoffCoords.join(',')
-  return fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${pickupCoordsStr};${dropoffCoordsStr}?access_token=${mapboxgl.accessToken}`)
-    .then(r => r.json())
+  return fetchMapbox(`directions/v5/mapbox/driving/${pickupCoordsStr};${dropoffCoordsStr}`)
 }
 
 export const isValidCoords = (coords: [number, number] | string) => coords && coords.toString() !== '0,0'
