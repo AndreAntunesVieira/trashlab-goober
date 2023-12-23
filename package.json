@@ -10,6 +10,7 @@
     "build": "next build",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
+    "db:seed": "node --loader ts-node/esm prisma/seed.ts",
     "test": "jest",
     "test:watch": "jest --watch",
     "dev": "next dev",

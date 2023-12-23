@@ -1,5 +1,5 @@
-import {DefaultArgs} from "@prisma/client/runtime/library";
-import {Prisma, PrismaClient} from "@prisma/client";
+import {type DefaultArgs} from "@prisma/client/runtime/library";
+import {Prisma, type PrismaClient} from "@prisma/client";
 import UserDelegate = Prisma.UserDelegate;
 
 

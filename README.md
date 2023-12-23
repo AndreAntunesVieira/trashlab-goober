@@ -10,7 +10,91 @@ Goober is a ride-hailing web application similar to Uber, designed to provide a 
 The application is built using React, NextJS, Typescript, and MapboxGL. 
 The backend is developed in NextJs with Prisma ORM and PostgreSQL database. 
 
-## User Types
+## Getting Started
+
+### Prerequisites
+- Node.js (version specified in `package.json`)
+- Yarn or NPM package manager
+- a valid PostgreSQL database URL
+- a valid mapbox access token
+
+### Installation
+Clone the repository and install dependencies:
+```bash
+git clone git@github.com:AndreAntunesVieira/trashlab-goober.git
+cd trashlab-goober
+yarn install
+```
+
+### Environment Setup
+Configure your environment variables. Create a `.env.local` file in the root directory and update it with your local settings:
+
+```bash
+DATABASE_URL="your_database_url"
+NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN="your_mapbox_access_token"
+```
+### Database Setup
+If you are using a local postgres database you can run the following commands to create a tre
+table structure and the next one to create a seed data for local tests.
+
+```bash
+yarn db:push
+yarn db:seed
+```
+
+## Running the Application
+Start the development server:
+```bash
+yarn dev
+```
+Access the application at `http://localhost:3000`.
+
+## Building for Production
+To build the application for production, run:
+
+```bash
+yarn build
+```
+To start the production server:
+
+```bash
+yarn start
+```
+
+## Testing
+
+### Running Unit Tests
+Run the Jest test suites:
+
+```bash
+yarn test
+```
+For continuous testing during development:
+
+```bash
+yarn test:watch
+```
+
+### Linting
+To check for linting errors:
+
+```bash
+yarn lint
+```
+
+
+## Database Management
+To interact with the database via Prisma Studio:
+
+```bash
+yarn db:studio
+```
+
+
+<hr/>
+
+
+## Use instructions
 
 There are two primary user roles in Goober:
 

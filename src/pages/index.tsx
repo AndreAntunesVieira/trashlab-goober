@@ -4,7 +4,7 @@ import Logo from "@/components/logo/logo";
 import {type FormEvent, useEffect} from "react";
 import {useRouter} from "next/router";
 import {setAuthenticatedUser} from "@/components/user/user-utils";
-import {User} from "@/components/user/user.types";
+import {type User} from "@/components/user/user.types";
 import {serializeForm} from "@/utils/dom";
 
 

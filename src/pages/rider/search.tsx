@@ -1,7 +1,7 @@
 import Map from "@/components/map/map.component";
 import DefaultPage from "@/layouts/default-page";
 import RiderSearchSection from "@/components/sections/rider-search-section/rider-search-section.component";
-import {FormEvent, useEffect, useState} from "react";
+import {type FormEvent, useEffect, useState} from "react";
 import {useRouter} from "next/router";
 
 export default function Home() {
