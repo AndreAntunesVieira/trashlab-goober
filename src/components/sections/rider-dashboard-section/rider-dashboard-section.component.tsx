@@ -18,7 +18,7 @@ export default function RiderDashboardSection(){
       </div>
       <div>
         <Link href="/rider/search">
-          <div className="p-2 w-full bg-blue-100">
+          <div className="p-2 w-full bg-blue-100 text-primary">
             Where to?
           </div>
         </Link>

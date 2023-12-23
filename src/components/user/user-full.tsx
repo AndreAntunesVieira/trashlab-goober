@@ -10,7 +10,7 @@ interface UserFullProps {
 }
 export default function UserFull({ name, image, href = '', vertical = false }: UserFullProps){
   return (
-    <Link href={href} className={classNames("flex items-center gap-2", {
+    <Link href={href} className={classNames("flex items-center gap-2 text-primary", {
       "flex-col-reverse": vertical
     })}>
       <div>

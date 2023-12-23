@@ -32,11 +32,8 @@ export default function RiderRidingSection({
         <h2 className="text-center text-2xl">
           Driver found
         </h2>
-        <div className="flex p-2 w-full bg-secondary items-center">
-          <div className="flex flex-col grow" title={`from ${pickup}, to ${dropoff}`}>
-            <div>
-              Travel started at: {startsAt?.toLocaleString()}
-            </div>
+        <div className="flex p-2 w-full bg-secondary items-center rounded-lg">
+          <div className="flex flex-col grow" title={`from ${pickup}, to ${dropoff},\n Travel started at: ${startsAt?.toLocaleString()}`}>
             <div>
               Duration: {Math.round(duration)} minutes
             </div>

@@ -25,9 +25,10 @@ export interface HumanizedRide {
 }
 
 export const humanizeRide = (data: (HumanizedRide | null)) => {
-  if (!data) return {distance: 0, duration: 0}
+  if (!data) return {distance: 0, duration: 0} as HumanizedRide
   return ({
     ...data,
+    status: data.status,
     distance: data?.distance / 1000,
     duration: data?.duration / 60,
   })

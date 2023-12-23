@@ -27,6 +27,7 @@ export default function RiderConfirmPage() {
   const handleOnSubmit = (driver: Driver) => {
     const rider = getAuthenticatedUser()
     const driverId = driver.id ?? ''
+    console.log(route, distance, duration)
     startRideDrivers.mutate({
       price: driver.price,
       dynamicMultiplier,
@@ -45,7 +46,10 @@ export default function RiderConfirmPage() {
     if (!params.has('pickup') || !params.has('dropoff')) {
       void router.push("/rider/search")
     } else {
-      void getDistance(pickup, dropoff).then(({routes}) => setRoute(routes[0]))
+      void getDistance(pickup, dropoff).then(({routes, ...x}) => {
+        setRoute(routes[0])
+        console.log('setRoute', routes, x)
+      })
     }
 
   }, []);

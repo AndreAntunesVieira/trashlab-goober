@@ -32,7 +32,7 @@ export default function DriverConfirmSection({
       <h2 className="text-center text-2xl">
         Rider found
       </h2>
-      <div className="bg-secondary text-primary p-2">
+      <div className="bg-secondary text-primary p-2 rounded-lg">
 
         <div className="flex items-center">
           <div className="grow">
@@ -60,6 +60,9 @@ export default function DriverConfirmSection({
           Do you accept this ride?
         </h2>
       }
+      {status === 'started' && <Notification icon="success">
+        You accepted! Riding started
+      </Notification>}
       {status === 'canceled' && <Notification icon="error">
         This riding was canceled
       </Notification>}
